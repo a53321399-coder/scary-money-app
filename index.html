@@ -2,230 +2,1071 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-<title>錢所未有｜恐怖記帳本</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>恐怖記帳本</title>
 
 <style>
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-body{
-    margin:0;
-    font-family:Arial,"Noto Sans TC",sans-serif;
-    background:#090909;
-    color:#eee;
+html {
+    background: #111;
 }
 
-header{
-    background:linear-gradient(135deg,#190000,#300000,#120000);
-    padding:24px 18px;
-    text-align:center;
-    border-bottom:2px solid #700000;
-    box-shadow:0 0 25px #500000;
+body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 0%, #3b1111 0%, #180909 35%, #0b0b0b 75%);
+    color: #eeeeee;
+    font-family:
+        Arial,
+        "Noto Sans TC",
+        "Microsoft JhengHei",
+        sans-serif;
 }
 
-header h1{
-    margin:0;
-    font-size:30px;
-    color:#d40000;
-    text-shadow:0 0 10px #ff0000;
+/* ===== 頂部 ===== */
+
+header {
+    text-align: center;
+    padding: 28px 18px 24px;
+    background:
+        linear-gradient(180deg, #451010, #230808);
+    border-bottom: 2px solid #8d1d1d;
+    box-shadow:
+        0 4px 20px rgba(0,0,0,.8);
 }
 
-header p{
-    margin:8px 0 0;
-    color:#aaa;
-    font-size:14px;
+.title {
+    margin: 0;
+    font-size: 30px;
+    color: #ffdddd;
+    text-shadow:
+        0 0 5px #ff2222,
+        0 0 15px #a00000;
 }
 
-.container{
-    max-width:650px;
-    margin:auto;
-    padding:16px;
+.subtitle {
+    margin-top: 8px;
+    color: #b9b9b9;
+    font-size: 14px;
 }
 
-.warning{
-    background:#160000;
-    border:1px solid #700000;
-    border-radius:14px;
-    padding:14px;
-    margin-bottom:16px;
-    color:#ddd;
-    text-align:center;
+/* ===== 主內容 ===== */
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 18px;
 }
 
-.warning strong{
-    color:#ff3333;
+/* ===== 餘額 ===== */
+
+.balance-card {
+    background:
+        linear-gradient(145deg, #241010, #151515);
+    border: 1px solid #702020;
+    border-radius: 18px;
+    padding: 24px 20px;
+    text-align: center;
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.6);
+    margin-bottom: 18px;
 }
 
-.balance{
-    background:#151515;
-    border:1px solid #333;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    margin-bottom:16px;
-    box-shadow:0 0 15px #000;
+.balance-label {
+    color: #aaa;
+    font-size: 15px;
 }
 
-.balance-title{
-    color:#999;
-    font-size:14px;
+.balance {
+    margin-top: 8px;
+    font-size: 38px;
+    font-weight: bold;
+    color: #f5f5f5;
+    text-shadow: 0 0 12px rgba(255,0,0,.45);
 }
 
-.balance-number{
-    font-size:34px;
-    font-weight:bold;
-    margin-top:6px;
-    color:#fff;
+/* ===== 統計 ===== */
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
-.stats{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-    margin-top:15px;
+.stat {
+    background: #171717;
+    border: 1px solid #363636;
+    border-radius: 14px;
+    padding: 17px 12px;
+    text-align: center;
 }
 
-.stat{
-    background:#101010;
-    border:1px solid #333;
-    border-radius:12px;
-    padding:12px;
+.stat-title {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 7px;
 }
 
-.stat-title{
-    color:#888;
-    font-size:13px;
+.income {
+    color: #79d69a;
+    font-size: 21px;
+    font-weight: bold;
 }
 
-.income{
-    color:#45d66a;
-    font-size:20px;
-    font-weight:bold;
-    margin-top:4px;
+.expense {
+    color: #ff7070;
+    font-size: 21px;
+    font-weight: bold;
 }
 
-.expense{
-    color:#ff4b4b;
-    font-size:20px;
-    font-weight:bold;
-    margin-top:4px;
+/* ===== 區塊 ===== */
+
+.section {
+    background: #151515;
+    border: 1px solid #333;
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.4);
 }
 
-.section-title{
-    margin:24px 0 10px;
-    color:#ddd;
-    font-size:18px;
-    font-weight:bold;
+.section-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #eeeeee;
 }
 
-.books{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
-}
+/* ===== 表單 ===== */
 
-.book{
-    background:#141414;
-    border:1px solid #333;
-    border-radius:14px;
-    padding:15px;
-    color:#ddd;
-    cursor:pointer;
-    transition:.15s;
-}
-
-.book.active{
-    border-color:#a00000;
-    background:#250000;
-    box-shadow:0 0 12px #4d0000;
-}
-
-.book-name{
-    font-size:17px;
-    font-weight:bold;
-}
-
-.book-balance{
-    margin-top:6px;
-    color:#aaa;
-    font-size:14px;
-}
-
-.form{
-    background:#121212;
-    border:1px solid #333;
-    border-radius:16px;
-    padding:16px;
-}
-
-label{
-    display:block;
-    color:#aaa;
-    font-size:13px;
-    margin:12px 0 6px;
+label {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin: 12px 0 6px;
 }
 
 input,
 select,
-textarea{
-    width:100%;
-    background:#080808;
-    color:#eee;
-    border:1px solid #444;
-    border-radius:10px;
-    padding:12px;
-    font-size:16px;
-    outline:none;
+textarea {
+    width: 100%;
+    padding: 13px 12px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: #0f0f0f;
+    color: #fff;
+    font-size: 16px;
+    outline: none;
 }
 
 input:focus,
 select:focus,
-textarea:focus{
-    border-color:#a00000;
-    box-shadow:0 0 8px #400000;
+textarea:focus {
+    border-color: #b52a2a;
+    box-shadow: 0 0 0 2px rgba(181,42,42,.18);
 }
 
-textarea{
-    min-height:70px;
-    resize:vertical;
+textarea {
+    min-height: 75px;
+    resize: vertical;
 }
 
-.type-buttons{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:10px;
+/* ===== 類型選擇 ===== */
+
+.type-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
 }
 
-.type-btn{
-    padding:12px;
-    border-radius:10px;
-    border:1px solid #444;
-    background:#080808;
-    color:#aaa;
-    font-size:16px;
-    cursor:pointer;
+.type-button {
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: #101010;
+    color: #aaa;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-.type-btn.selected-income{
-    background:#09220e;
-    border-color:#1f9c3d;
-    color:#57e879;
+.type-button.active-income {
+    background: #173522;
+    border-color: #3b9b61;
+    color: #8df0ad;
 }
 
-.type-btn.selected-expense{
-    background:#250000;
-    border-color:#a00000;
-    color:#ff5555;
+.type-button.active-expense {
+    background: #421818;
+    border-color: #b52a2a;
+    color: #ff8b8b;
 }
 
-.add-btn{
-    width:100%;
-    margin-top:16px;
-    border:0;
-    border-radius:12px;
-    padding:14px;
-    font-size:17px;
-    font-weight:bold;
-    background:linear-gradient(135deg,#
+/* ===== 新增按鈕 ===== */
+
+.add-button {
+    width: 100%;
+    margin-top: 17px;
+    padding: 15px;
+    border: 0;
+    border-radius: 11px;
+    background:
+        linear-gradient(135deg, #a51f1f, #641010);
+    color: white;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(100,0,0,.4);
+}
+
+.add-button:active {
+    transform: scale(.98);
+}
+
+/* ===== 記帳紀錄 ===== */
+
+.empty {
+    text-align: center;
+    color: #777;
+    padding: 25px 10px;
+}
+
+.record {
+    background: #101010;
+    border: 1px solid #333;
+    border-radius: 13px;
+    padding: 15px;
+    margin-bottom: 11px;
+}
+
+.record-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-start;
+}
+
+.record-name {
+    font-size: 17px;
+    font-weight: bold;
+    color: #eee;
+}
+
+.record-date {
+    color: #777;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.record-amount {
+    font-size: 18px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.record-amount.income-text {
+    color: #79d69a;
+}
+
+.record-amount.expense-text {
+    color: #ff7070;
+}
+
+.record-note {
+    color: #aaa;
+    font-size: 14px;
+    margin-top: 10px;
+    white-space: pre-wrap;
+}
+
+.delete-button {
+    margin-top: 12px;
+    padding: 7px 11px;
+    border-radius: 8px;
+    border: 1px solid #4d2525;
+    background: #210e0e;
+    color: #ff7777;
+    cursor: pointer;
+}
+
+/* ===== 底部功能 ===== */
+
+.bottom-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.secondary-button {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #444;
+    background: #181818;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.danger-button {
+    border-color: #682020;
+    color: #ff7777;
+}
+
+/* ===== 恐怖提示 ===== */
+
+.warning {
+    text-align: center;
+    padding: 13px;
+    margin-bottom: 18px;
+    border-radius: 12px;
+    background: #211010;
+    border: 1px solid #542020;
+    color: #c9a5a5;
+    font-size: 13px;
+}
+
+/* ===== 手機版 ===== */
+
+@media (max-width: 480px) {
+
+    .container {
+        padding: 13px;
+    }
+
+    .title {
+        font-size: 27px;
+    }
+
+    .balance {
+        font-size: 34px;
+    }
+
+    .section {
+        padding: 15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1 class="title">☠ 恐怖記帳本 ☠</h1>
+    <div class="subtitle">每一筆花費，都會留下痕跡……</div>
+</header>
+
+<main class="container">
+
+    <div class="warning">
+        ⚠ 小心你的錢包。它可能正在慢慢消失。
+    </div>
+
+    <!-- 餘額 -->
+    <section class="balance-card">
+        <div class="balance-label">目前餘額</div>
+        <div class="balance" id="balance">$0</div>
+    </section>
+
+    <!-- 統計 -->
+    <section class="stats">
+
+        <div class="stat">
+            <div class="stat-title">💰 總收入</div>
+            <div class="income" id="totalIncome">$0</div>
+        </div>
+
+        <div class="stat">
+            <div class="stat-title">💀 總支出</div>
+            <div class="expense" id="totalExpense">$0</div>
+        </div>
+
+    </section>
+
+    <!-- 新增記帳 -->
+    <section class="section">
+
+        <div class="section-title">🩸 新增一筆記帳</div>
+
+        <label>類型</label>
+
+        <div class="type-buttons">
+
+            <button
+                type="button"
+                class="type-button active-expense"
+                id="expenseButton"
+                onclick="setType('expense')">
+                💀 支出
+            </button>
+
+            <button
+                type="button"
+                class="type-button"
+                id="incomeButton"
+                onclick="setType('income')">
+                💰 收入
+            </button>
+
+        </div>
+
+        <label for="amount">金額</label>
+
+        <input
+            id="amount"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="1"
+            placeholder="例如：100">
+
+        <label for="category">項目</label>
+
+        <input
+            id="category"
+            type="text"
+            maxlength="30"
+            placeholder="例如：晚餐、飲料、薪水">
+
+        <label for="date">日期</label>
+
+        <input
+            id="date"
+            type="date">
+
+        <label for="note">備註</label>
+
+        <textarea
+            id="note"
+            maxlength="200"
+            placeholder="想留下什麼就寫什麼……"></textarea>
+
+        <button
+            type="button"
+            class="add-button"
+            onclick="addRecord()">
+            🩸 記下這筆帳
+        </button>
+
+    </section>
+
+    <!-- 紀錄 -->
+    <section class="section">
+
+        <div class="section-title">📖 金錢留下的痕跡</div>
+
+        <div id="records"></div>
+
+    </section>
+
+    <!-- 功能 -->
+    <section class="section">
+
+        <div class="section-title">⚙ 記帳本管理</div>
+
+        <div class="bottom-buttons">
+
+            <button
+                type="button"
+                class="secondary-button"
+                onclick="exportData()">
+                📤 匯出資料
+            </button>
+
+            <button
+                type="button"
+                class="secondary-button danger-button"
+                onclick="clearAll()">
+                🗑 清除全部
+            </button>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+
+/* ========================================
+   恐怖記帳本
+   資料會儲存在手機瀏覽器 LocalStorage
+======================================== */
+
+let records = [];
+
+let currentType = "expense";
+
+const STORAGE_KEY = "scary_money_book_records_v2";
+
+
+/* ===== 初始化 ===== */
+
+function init() {
+
+    loadData();
+
+    setToday();
+
+    setType("expense");
+
+    render();
+
+}
+
+
+/* ===== 讀取資料 ===== */
+
+function loadData() {
+
+    try {
+
+        const saved = localStorage.getItem(STORAGE_KEY);
+
+        if (saved) {
+            records = JSON.parse(saved);
+        }
+
+        if (!Array.isArray(records)) {
+            records = [];
+        }
+
+    } catch (error) {
+
+        console.error("讀取資料失敗", error);
+
+        records = [];
+
+    }
+
+}
+
+
+/* ===== 儲存資料 ===== */
+
+function saveData() {
+
+    try {
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(records)
+        );
+
+    } catch (error) {
+
+        alert("資料儲存失敗，請確認瀏覽器允許網站儲存資料。");
+
+    }
+
+}
+
+
+/* ===== 設定今天日期 ===== */
+
+function setToday() {
+
+    const dateInput = document.getElementById("date");
+
+    const today = new Date();
+
+    const year = today.getFullYear();
+
+    const month = String(
+        today.getMonth() + 1
+    ).padStart(2, "0");
+
+    const day = String(
+        today.getDate()
+    ).padStart(2, "0");
+
+    dateInput.value =
+        `${year}-${month}-${day}`;
+
+}
+
+
+/* ===== 選擇收入 / 支出 ===== */
+
+function setType(type) {
+
+    currentType = type;
+
+    const expenseButton =
+        document.getElementById("expenseButton");
+
+    const incomeButton =
+        document.getElementById("incomeButton");
+
+    expenseButton.classList.remove(
+        "active-expense"
+    );
+
+    incomeButton.classList.remove(
+        "active-income"
+    );
+
+    if (type === "expense") {
+
+        expenseButton.classList.add(
+            "active-expense"
+        );
+
+    } else {
+
+        incomeButton.classList.add(
+            "active-income"
+        );
+
+    }
+
+}
+
+
+/* ===== 新增記帳 ===== */
+
+function addRecord() {
+
+    const amountInput =
+        document.getElementById("amount");
+
+    const categoryInput =
+        document.getElementById("category");
+
+    const dateInput =
+        document.getElementById("date");
+
+    const noteInput =
+        document.getElementById("note");
+
+    const amount =
+        Number(amountInput.value);
+
+    const category =
+        categoryInput.value.trim();
+
+    const date =
+        dateInput.value;
+
+    const note =
+        noteInput.value.trim();
+
+
+    /* 檢查金額 */
+
+    if (!amount || amount <= 0) {
+
+        alert("請輸入正確的金額。");
+
+        amountInput.focus();
+
+        return;
+
+    }
+
+
+    /* 檢查項目 */
+
+    if (!category) {
+
+        alert("請輸入這筆錢是做什麼的。");
+
+        categoryInput.focus();
+
+        return;
+
+    }
+
+
+    /* 建立紀錄 */
+
+    const record = {
+
+        id: Date.now(),
+
+        type: currentType,
+
+        amount: amount,
+
+        category: category,
+
+        date: date,
+
+        note: note
+
+    };
+
+
+    records.unshift(record);
+
+    saveData();
+
+    render();
+
+
+    /* 清空 */
+
+    amountInput.value = "";
+
+    categoryInput.value = "";
+
+    noteInput.value = "";
+
+    setToday();
+
+
+    /* 回到金額欄 */
+
+    amountInput.focus();
+
+}
+
+
+/* ===== 刪除單筆 ===== */
+
+function deleteRecord(id) {
+
+    const target =
+        records.find(
+            record => record.id === id
+        );
+
+    if (!target) {
+        return;
+    }
+
+
+    const ok = confirm(
+        `確定要刪除「${target.category}」這筆記帳嗎？`
+    );
+
+    if (!ok) {
+        return;
+    }
+
+
+    records =
+        records.filter(
+            record => record.id !== id
+        );
+
+    saveData();
+
+    render();
+
+}
+
+
+/* ===== 清除全部 ===== */
+
+function clearAll() {
+
+    if (records.length === 0) {
+
+        alert("目前沒有任何記帳紀錄。");
+
+        return;
+
+    }
+
+
+    const ok = confirm(
+        "⚠ 警告！\n\n確定要把所有記帳紀錄全部刪掉嗎？\n\n這個動作無法復原。"
+    );
+
+    if (!ok) {
+        return;
+    }
+
+
+    records = [];
+
+    saveData();
+
+    render();
+
+}
+
+
+/* ===== 格式化金額 ===== */
+
+function money(number) {
+
+    return "$" +
+        Number(number).toLocaleString(
+            "zh-TW"
+        );
+
+}
+
+
+/* ===== 格式化日期 ===== */
+
+function formatDate(dateString) {
+
+    if (!dateString) {
+        return "";
+    }
+
+    const parts =
+        dateString.split("-");
+
+    if (parts.length !== 3) {
+        return dateString;
+    }
+
+    return `${parts[0]}/${parts[1]}/${parts[2]}`;
+
+}
+
+
+/* ===== 顯示紀錄 ===== */
+
+function renderRecords() {
+
+    const container =
+        document.getElementById("records");
+
+
+    if (records.length === 0) {
+
+        container.innerHTML = `
+            <div class="empty">
+                👻 目前還沒有任何金錢痕跡……<br>
+                <br>
+                第一筆記帳等著你。
+            </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        records.map(record => {
+
+            const isIncome =
+                record.type === "income";
+
+            const sign =
+                isIncome ? "+" : "-";
+
+            const amountClass =
+                isIncome
+                    ? "income-text"
+                    : "expense-text";
+
+            const typeText =
+                isIncome
+                    ? "收入"
+                    : "支出";
+
+
+            return `
+                <div class="record">
+
+                    <div class="record-top">
+
+                        <div>
+
+                            <div class="record-name">
+                                ${escapeHTML(record.category)}
+                            </div>
+
+                            <div class="record-date">
+                                ${formatDate(record.date)}
+                                ·
+                                ${typeText}
+                            </div>
+
+                        </div>
+
+                        <div class="record-amount ${amountClass}">
+                            ${sign}${money(record.amount)}
+                        </div>
+
+                    </div>
+
+                    ${
+                        record.note
+                        ? `
+                            <div class="record-note">
+                                ${escapeHTML(record.note)}
+                            </div>
+                        `
+                        : ""
+                    }
+
+                    <button
+                        type="button"
+                        class="delete-button"
+                        onclick="deleteRecord(${record.id})">
+                        🗑 刪除
+                    </button>
+
+                </div>
+            `;
+
+        }).join("");
+
+}
+
+
+/* ===== 更新統計 ===== */
+
+function renderStats() {
+
+    let totalIncome = 0;
+
+    let totalExpense = 0;
+
+
+    records.forEach(record => {
+
+        if (record.type === "income") {
+
+            totalIncome +=
+                Number(record.amount);
+
+        } else {
+
+            totalExpense +=
+                Number(record.amount);
+
+        }
+
+    });
+
+
+    const balance =
+        totalIncome - totalExpense;
+
+
+    document.getElementById(
+        "totalIncome"
+    ).textContent =
+        money(totalIncome);
+
+
+    document.getElementById(
+        "totalExpense"
+    ).textContent =
+        money(totalExpense);
+
+
+    document.getElementById(
+        "balance"
+    ).textContent =
+        money(balance);
+
+
+    const balanceElement =
+        document.getElementById("balance");
+
+
+    if (balance < 0) {
+
+        balanceElement.style.color =
+            "#ff6666";
+
+    } else {
+
+        balanceElement.style.color =
+            "#f5f5f5";
+
+    }
+
+}
+
+
+/* ===== 整頁更新 ===== */
+
+function render() {
+
+    renderStats();
+
+    renderRecords();
+
+}
+
+
+/* ===== 防止文字破壞 HTML ===== */
+
+function escapeHTML(text) {
+
+    return String(text)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/* ===== 匯出資料 ===== */
+
+function exportData() {
+
+    if (records.length === 0) {
+
+        alert("目前沒有資料可以匯出。");
+
+        return;
+
+    }
+
+
+    const data =
+        JSON.stringify(
+            records,
+            null,
+            2
+        );
+
+
+    const blob =
+        new Blob(
+            [data],
+            {
+                type: "application/json"
+            }
+        );
+
+
+    const url =
+        URL.createObjectURL(blob);
+
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        "恐怖記帳本備份.json";
+
+    document.body.appendChild(a);
+
+    a.click();
+
+    a.remove();
+
+    URL.revokeObjectURL(url);
+
+}
+
+
+/* ===== 啟動 ===== */
+
+init();
+
+</script>
+
+</body>
+</html>
